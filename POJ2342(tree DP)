@@ -1,0 +1,56 @@
+#include <iostream>
+#include <cstring>
+#include <vector>
+
+using namespace std;
+
+
+struct Node
+{
+    int fa;
+    int sta[2];
+    vector <int> chi;
+}node [6001];
+
+bool vis[6001];
+void dfs(int now)
+{
+    vis[now] = true;
+    int len = node [now].chi.size();
+    for (int i =0;i<len;i++)
+        {
+            int child = node[now].chi[i];
+            if(!vis[child])
+               {
+                    dfs(child);
+                    node[now].sta[0] += max(node[child].sta[0],node[child].sta[1]);
+                    node[now].sta[1] += node[child].sta[0];
+                }
+        }
+}
+
+
+
+int main()
+{
+    //memset(node,0,sizeof node);
+   // memset(vis,false,sizeof vis);
+    int a,b,n;
+    cin>> n;
+    for (int i=1;i<=n;i++)
+            cin >>node[i].sta[1];
+    while (cin>> a>>b)
+    {
+        if(a==0&&b==0)
+            break;
+        node[a].fa =b;
+        node[b].chi.push_back(a);
+    }
+    int root;
+    for (int i=1;i<=n;i++)
+        if(!node[i].fa)
+            {root = i;break;}
+    dfs(root);
+    cout << max(node[root].sta[0],node[root].sta[1])<<endl;
+
+}
