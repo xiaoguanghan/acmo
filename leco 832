@@ -1,0 +1,7 @@
+for i, j in enumerate(A) :
+    A[i] = j[::-1]
+    for n,k in enumerate(A[i]):
+        A[i][n] = 1-k
+return A
+        
+        
