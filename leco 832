@@ -4,4 +4,10 @@ for i, j in enumerate(A) :
         A[i][n] = 1-k
 return A
         
+return [[1 - i for i in row[::-1]] for row in A]
+
+for row in A:
+    for i in range((len(row)+1)//2):
+        row[i],row[~i] = row[~i]^1, row[i]^1
+return A
         
