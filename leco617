@@ -1,0 +1,12 @@
+        n = TreeNode(0)
+        if t1 and t2: 
+            n.left = self.mergeTrees(t1.left, t2.left)
+            n.right = self.mergeTrees(t1.right, t2.right)
+            n.val = t1.val + t2.val
+        elif t1:
+            n = t1
+        elif t2:
+            n = t2        
+        else:
+            return None
+        return n            
