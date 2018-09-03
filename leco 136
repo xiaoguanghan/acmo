@@ -1,0 +1,8 @@
+#solution 1 math
+return 2 * sum(set(nums)) - sum(nums)
+
+#solution 2 bit operation
+ans = 0
+for num in nums:
+  ans^= num
+  return ans
