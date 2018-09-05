@@ -1,0 +1,28 @@
+    a = {}
+    ans = []
+    for i in nums:
+        if i in a:
+            a[i] += 1
+        else:
+            a[i] = 1
+    sorted_a = sorted(a.items(),key=lambda e:e[1],reverse=True)
+    for i in range(k):
+        ans.append(sorted_a[i][0])
+    return (ans)
+
+# 2
+# bucket sort
+
+    a, ans = {}, []
+    for i in nums:            
+        a[i] = a[i]+1 if i in a else 1
+        
+    bucket = [[] for i in range(len(nums)+1)]    # create the maxium bucket
+    for i in a:
+        bucket[a[i]].append(i)                   # if 1 appear 5 times, store 1 in bucket[5]
+    for i in range(len(bucket)-1, -1 ,-1):       # get the maxium via a reverse searching # but i dont think the stop is at -1
+        if bucket[i]:
+            ans.extend(bucket[i])
+        if len(ans)== k:
+            break
+    return (ans)
